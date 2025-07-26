@@ -12,26 +12,12 @@ const tvDisplaySettingsSchema = new mongoose.Schema({
   // --- Settings specific to TV1 (Uncalled Students) ---
   section: {
     type: String,
-    default: 'Bidayay', // Default section for TV1
+    default: 'Bidaya', // Default section for TV1
     trim: true
   },
   pool: {
     type: String,
     default: 'Pool 1', // Default pool for TV1
-    trim: true
-  },
-  autoAdvancePool: {
-    type: Boolean,
-    default: false // Whether TV1 should automatically advance pools
-  },
-  autoAdvanceDelaySeconds: {
-    type: Number,
-    default: 10, // Delay in seconds after a pool is completed before advancing
-    min: 0
-  },
-  tv1BannerMessage: {
-    type: String,
-    default: '', // Custom message displayed on TV1
     trim: true
   },
 

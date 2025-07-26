@@ -10,7 +10,7 @@ import cors from 'cors';
 import studentRoutes from './routes/studentRoutes.js';
 import teamRoutes from './routes/teamRoutes.js';
 import tvSettingsRoutes from './routes/tvSettingsRoutes.js';
-
+import exportStudentsRoute from "./routes/studentImportExportRoutes.js"
 const app = express();
 const server = http.createServer(app); // Create HTTP server for Express and Socket.IO
 
@@ -51,7 +51,7 @@ app.use(express.json()); // Parse JSON request bodies
 app.use('/api/students', studentRoutes);
 app.use('/api/teams', teamRoutes);
 app.use('/api/tv-settings', tvSettingsRoutes);
-
+app.use('/api', exportStudentsRoute);
 // Basic route for health check
 app.get('/', (req, res) => {
   res.send('Student Auction Backend API is running!');
@@ -65,7 +65,7 @@ io.on('connection', (socket) => {
     console.log(`User disconnected: ${socket.id}`);
   });
 
-  // You can add more specific socket event listeners here if needed
+
 });
 
 const PORT = process.env.PORT || 5000;

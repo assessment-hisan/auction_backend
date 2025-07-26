@@ -38,7 +38,7 @@ export const getTvSettings = async (req, res) => {
 };
 
 // Update TV display settings for a specific screenId
-export const updateTvSettings = async (req, res, io) => {
+export const updateTvSettings = async (req, res) => {
   const { screenId } = req.params;
   const updateFields = req.body; // Contains fields like section, pool, autoAdvancePool, displayMode, etc.
 
@@ -49,7 +49,7 @@ export const updateTvSettings = async (req, res, io) => {
       { new: true, upsert: true } // Create if not exists, return new doc
     );
 
-    res.status(200).json(updatedSettings);
+    const io = req.app.get('socketio');
 
     // Emit WebSocket event based on screenId
     if (screenId === 'tv1Display') {
@@ -57,6 +57,8 @@ export const updateTvSettings = async (req, res, io) => {
     } else if (screenId === 'tv2Display') {
       io.emit('tv2_settings_updated', updatedSettings);
     }
+
+    res.status(200).json(updatedSettings);
 
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -110,3 +112,14 @@ export const checkAndAdvanceTv1Pool = async (io) => {
     console.error("Error in checkAndAdvanceTv1Pool:", error);
   }
 };
+
+export const tv1 = async () => {
+  try {
+    const tv1 = await TvDisplaySettings.find({ screenId: "tv1Display" })
+
+    res.send(tv1);
+  } catch (error) {
+    console.error("error tv1 data")
+  }
+
+}

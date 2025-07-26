@@ -9,6 +9,7 @@ import {
   assignStudentsToPool,
   unassignStudent
 } from '../controllers/studentController.js';
+import { callStudents } from '../controllers/teamStudents.js';
 
 const router = express.Router();
 
@@ -25,5 +26,6 @@ router.put('/:id', passIo, updateStudent);
 router.delete('/:id', passIo, deleteStudent);
 router.post('/assign-to-pool', passIo, assignStudentsToPool); // New route for pool assignment
 router.put('/unassign/:id', passIo, unassignStudent); // Route to unassign student from team
+router.post('/call-student', callStudents)
 
 export default router;
