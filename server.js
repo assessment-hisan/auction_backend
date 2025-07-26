@@ -27,7 +27,8 @@ app.set('socketio', io);
 
 // MongoDB Connection
 // admin-dashboard';
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/auction'
+//const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/auction'
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb+srv://assessmenthisan:tOgbBkQfqjTCGfsv@cluster0.5ytn9tw.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0'
 if (!MONGODB_URI) {
   console.error("MONGODB_URI is not defined in environment variables.");
   process.exit(1); // Exit if no DB URI
